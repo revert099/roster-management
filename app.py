@@ -35,7 +35,7 @@ import os
 
 app = Flask(__name__)
 # Needed to use session, secret key stored in render environment
-app.secret_key = 'MY_SECRET_KEY' #os.getenv('VERY_SECRET_KEY')  
+app.secret_key = os.getenv('VERY_SECRET_KEY')  
 if not app.secret_key:
     raise ValueError("No secret key set for Flask application")
 
