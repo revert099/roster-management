@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT299 Roster Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <form method="POST">
+        <h2>ICT299 Roster Management System</h2>
+        <label for="student-select">Find your name:</label>
+        <br></br>
+        <select id="student-select" name="student_number" required>
+            <option selected disabled>Select your name</option>
+            
+            {% for student in students %}
+                <option value="{{ student['number'] }}">{{ student['name'] }}, ({{ student['number'] }})</option>
+            {% endfor %}
+
+        </select>
+        <br><br>
+            <button type="submit" name="action" formaction="/clock_in" value="clock_in">Clock In</button>
+            <button type="submit" name="action" formaction="/clock_out" value="clock_out">Clock Out</button>
+            
+            {% for message in get_flashed_messages() %}
+            <div class="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+    </form>
+
+</body>
+</html>
